@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiUrl } from './api';
 import { Zap, Award, FolderGit2, Briefcase, FileText, BarChart3, ChevronRight, ChevronLeft, Sparkles } from 'lucide-react';
 import SkillsForm from './components/SkillsForm';
 import CertificationsForm from './components/CertificationsForm';
@@ -52,7 +53,7 @@ export default function App() {
         resume_text: data.resumeText || '',
       };
 
-      const res = await fetch('/api/score/calculate', {
+      const res = await fetch(apiUrl('/api/score/calculate'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

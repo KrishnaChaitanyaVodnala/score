@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, X, ChevronDown, ChevronUp, Zap } from 'lucide-react';
+import { apiUrl } from '../api';
 
 export default function SkillsForm({ skills, onChange }) {
   const [allSkills, setAllSkills] = useState({});
@@ -8,7 +9,7 @@ export default function SkillsForm({ skills, onChange }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/skills')
+    fetch(apiUrl('/api/skills'))
       .then(r => r.json())
       .then(data => { setAllSkills(data); setLoading(false); })
       .catch(() => setLoading(false));

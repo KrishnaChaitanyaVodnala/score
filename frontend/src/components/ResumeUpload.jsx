@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { FileText, Upload, Check } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
+import { apiUrl } from '../api';
 
 export default function ResumeUpload({ resumeText, onChange }) {
   const [uploading, setUploading] = useState(false);
@@ -15,7 +16,7 @@ export default function ResumeUpload({ resumeText, onChange }) {
     try {
       const formData = new FormData();
       formData.append('file', file);
-      const res = await fetch('/api/score/resume', { method: 'POST', body: formData });
+      const res = await fetch(apiUrl('/api/score/resume'), { method: 'POST', body: formData });
       const result = await res.json();
       setPreview(result);
       // Also read as text for the final calculation

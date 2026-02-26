@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Award, Plus, X, Upload, FileCheck } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
+import { apiUrl } from '../api';
 
 export default function CertificationsForm({ certs, onChange }) {
   const [name, setName] = useState('');
@@ -24,7 +25,7 @@ export default function CertificationsForm({ certs, onChange }) {
       try {
         const formData = new FormData();
         formData.append('file', file);
-        const res = await fetch('/api/score/certifications/scan', {
+        const res = await fetch(apiUrl('/api/score/certifications/scan'), {
           method: 'POST', body: formData
         });
         const result = await res.json();
